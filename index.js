@@ -59,7 +59,6 @@ app.post("/put-secret", async (req, res) => {
 });
 
 app.post("/patch-secret", async (req, res) => {
-  const searchId = req.body.id;
   // TODO 4: Use axios para PATCH os dados de req.body para os servidores API de segredos.
   try {
     const searchId = req.body.id;
@@ -75,8 +74,18 @@ app.post("/patch-secret", async (req, res) => {
 });
 
 app.post("/delete-secret", async (req, res) => {
-  const searchId = req.body.id;
   // TODO 5: Use axios para DELETE o item com searchId dos servidores da API de segredos.
+  try {
+    const searchId = req.body.id;
+    const result = await axios.delete(
+      API_URL + "/secrets/" + searchId,
+      req.body,
+      config
+    );
+    res.render("index.ejs", { content: JSON.stringify(result.data) });
+  } catch (error) {
+    res.render("index.ejs", { content: JSON.stringify(error.response.data) });
+  }
 });
 
 app.listen(port, () => {
