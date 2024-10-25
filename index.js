@@ -17,7 +17,6 @@ const config = {
   headers: { Authorization: `Bearer ${yourBearerToken}` },
 };
 
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
@@ -27,7 +26,7 @@ app.get("/", (req, res) => {
 app.post("/get-secret", async (req, res) => {
   const searchId = req.body.id;
   try {
-    const result = await axios.get(API_URL+"/secrets/"+searchId, config);
+    const result = await axios.get(API_URL + "/secrets/" + searchId, config);
     res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
     res.render("index.ejs", { content: JSON.stringify(error.response.data) });
@@ -37,23 +36,42 @@ app.post("/get-secret", async (req, res) => {
 app.post("/post-secret", async (req, res) => {
   // TODO 2: Use axios para POST os dados de req.body para os servidores API de segredos.
   try {
-    const result = await axios.post(API_URL+"/secrets", req.body, config);
-    res.render("index.ejs", { content: JSON.stringify(result.data) })
+    const result = await axios.post(API_URL + "/secrets", req.body, config);
+    res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
-    res.render("index.ejs", {content: JSON.stringify(error.response.data)} )
+    res.render("index.ejs", { content: JSON.stringify(error.response.data) });
   }
 });
 
 app.post("/put-secret", async (req, res) => {
-  const searchId = req.body.id;
   // TODO 3: Use axios para COLOCAR os dados de req.body nos servidores API de segredos.
-  const result = await axios.put(API_URL+"/secrets/"+searchId, req.body, config);
-  res.render("index.ejs", { content: JSON.stringify(result.data) })
+  try {
+    const searchId = req.body.id;
+    const result = await axios.put(
+      API_URL + "/secrets/" + searchId,
+      req.body,
+      config
+    );
+    res.render("index.ejs", { content: JSON.stringify(result.data) });
+  } catch (error) {
+    res.render("index.ejs", { content: JSON.stringify(error.response.data) });
+  }
 });
 
 app.post("/patch-secret", async (req, res) => {
   const searchId = req.body.id;
   // TODO 4: Use axios para PATCH os dados de req.body para os servidores API de segredos.
+  try {
+    const searchId = req.body.id;
+    const result = await axios.patch(
+      API_URL + "/secrets/" + searchId,
+      req.body,
+      config
+    );
+    res.render("index.ejs", { content: JSON.stringify(result.data) });
+  } catch (error) {
+    res.render("index.ejs", { content: JSON.stringify(error.response.data) });
+  }
 });
 
 app.post("/delete-secret", async (req, res) => {
