@@ -17,7 +17,7 @@ Para buscar um segredo, envie uma requisição com id do segredo no corpo da req
 ## Estrutura do Projeto
 ```plaintext
 .
-├── app.js            # Arquivo principal do servidor
+├── index.js            # Arquivo principal do servidor
 ├── package.json      # Dependências e scripts do projeto
 ├── views
 │   └── index.ejs     # Arquivo de template para renderização
