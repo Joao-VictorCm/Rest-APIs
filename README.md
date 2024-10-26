@@ -43,7 +43,7 @@ Para buscar um segredo, envie uma requisição com id do segredo no corpo da req
    git clone git@github.com:Joao-VictorCm/Rest-APIs.git
 
    
-## Instale as dependências:
+## Instale as dependências
 
 - npm install
 - Substitua o valor de yourBearerToken com o seu token de autenticação da API de Segredos:
